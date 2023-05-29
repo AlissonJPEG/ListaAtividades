@@ -1,0 +1,206 @@
+ALUNO: ALISSON COSTA MOREIRA
+CURSO: LICENCIATURA EM COMPUTAÇÃO
+DISCIPLINA: LINGUAGEM DE PROGRAMAÇÃO I
+//////////////////////////////////////////////////
+
+1. Um Banco concederá um crédito especial aos seus clientes, variável com o saldo médio no último ano
+Faça um algoritmo que leia o saldo médio de um cliente e calcule o valor do crédito de acordo com a tabela abaixo.
+Mostre uma mensagem informando o saldo médio e o valor do crédito
+
+import java.util.Scanner;
+
+public class CreditoEspecial {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Digite o saldo médio do cliente: ");
+        double saldoMedio = scanner.nextDouble();
+        
+        double credito;
+        
+        if (saldoMedio >= 0 && saldoMedio <= 200) {
+            credito = 0;
+        } else if (saldoMedio <= 400) {
+            credito = saldoMedio * 0.2;
+        } else if (saldoMedio <= 600) {
+            credito = saldoMedio * 0.3;
+        } else {
+            credito = saldoMedio * 0.4;
+        }
+        
+        System.out.println("O saldo médio é: " + saldoMedio);
+        System.out.println("O valor do crédito é: " + credito);
+        
+        scanner.close();
+    }
+}
+/////////////////////////////////////////////////////
+
+
+3. Uma empresa realizou uma pesquisa com os seus fornecedores, 
+na qual foram coletados os seguintes dados referentes aos produtos fornecidos:
+ID, Valor e Percentual de aumento 
+
+Obs. Se o produto não tiver sofrido alteração de preço, o percentual de aumento será igual a 0.
+
+Faça um programa que determine e escreva: 
+O novo valor de cada um dos produtos. 
+A quantidade de produtos mais caros que R$ 100,00 (após aumento) e que tiveram aumento superior a 5%. 
+A média de valor dos produtos que não sofreram aumento. 
+O valor do produto mais caro (após aumento).
+
+import java.util.Scanner;
+
+public class AnaliseFornecedores {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int id;
+        double valor, percentualAumento;
+        double novoValor, produtoMaisCaro = 0;
+        int quantidadeProdutosCaros = 0, quantidadeProdutosSemAumento = 0;
+        double somaValoresSemAumento = 0;
+        int quantidadeProdutos = 0;
+        
+        do {
+            System.out.print("Digite o ID do produto (0 para sair): ");
+            id = scanner.nextInt();
+            
+            if (id != 0) {
+                System.out.print("Digite o valor do produto: ");
+                valor = scanner.nextDouble();
+                
+                System.out.print("Digite o percentual de aumento do produto: ");
+                percentualAumento = scanner.nextDouble();
+                
+                novoValor = valor + (valor * percentualAumento / 100);
+                
+                if (novoValor > 100 && percentualAumento > 5) {
+                    quantidadeProdutosCaros++;
+                }
+                
+                if (percentualAumento == 0) {
+                    quantidadeProdutosSemAumento++;
+                    somaValoresSemAumento += valor;
+                }
+                
+                if (novoValor > produtoMaisCaro) {
+                    produtoMaisCaro = novoValor;
+                }
+                
+                System.out.println("Novo valor do produto: " + novoValor);
+                
+                quantidadeProdutos++;
+            }
+        } while (id != 0);
+        
+        double mediaValoresSemAumento = 0;
+        if (quantidadeProdutosSemAumento > 0) {
+            mediaValoresSemAumento = somaValoresSemAumento / quantidadeProdutosSemAumento;
+        }
+        
+        System.out.println("Quantidade de produtos caros com aumento superior a 5%: " + quantidadeProdutosCaros);
+        System.out.println("Média de valor dos produtos sem aumento: " + mediaValoresSemAumento);
+        System.out.println("Valor do produto mais caro: " + produtoMaisCaro);
+        
+        scanner.close();
+    }
+}
+//////////////////////////////////////////////////////////
+
+4. Foi realizada uma pesquisa com 200 pessoas que assistiram uma peça de teatro, 
+em relação a sua opinião sobre a mesma.. Cada espectador respondeu a um questionário que solicitava os seguintes dados: 
+
+idade da pessoa; 
+o identificador da pessoa; 
+opinião em relação à peça(de 0 a 10).
+Faça um programa que, a partir destes dados, calcule e imprima:
+a. A quantidade de respostas 10.
+b. A média de idade das pessoas que responderam o questionário.
+c. A percentagem de pessoas que responderam 5 ou menos para a opinião da peça.
+d. O identificador da pessoa mais velha.
+ * Considere que a maior idade não é repetida.
+
+import java.util.Scanner;
+
+public class AnaliseTeatro {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int quantidadeRespostas10 = 0;
+        int somaIdades = 0;
+        int quantidadePessoas = 0;
+        int quantidadeOpiniao5OuMenos = 0;
+        int idadeMaisVelha = 0;
+        int identificadorMaisVelha = 0;
+
+        for (int i = 0; i < 200; i++) {
+            System.out.println("Pessoa " + (i + 1) + ":");
+            System.out.print("Digite a idade da pessoa: ");
+            int idade = scanner.nextInt();
+            System.out.print("Digite o identificador da pessoa: ");
+            int identificador = scanner.nextInt();
+            System.out.print("Digite a opinião da pessoa em relação à peça (0 a 10): ");
+            int opiniao = scanner.nextInt();
+
+            if (opiniao == 10) {
+                quantidadeRespostas10++;
+            }
+
+            somaIdades += idade;
+            quantidadePessoas++;
+
+            if (opiniao <= 5) {
+                quantidadeOpiniao5OuMenos++;
+            }
+
+            if (idade > idadeMaisVelha) {
+                idadeMaisVelha = idade;
+                identificadorMaisVelha = identificador;
+            }
+        }
+
+        double mediaIdade = (double) somaIdades / quantidadePessoas;
+        double percentagemOpiniao5OuMenos = (double) quantidadeOpiniao5OuMenos / quantidadePessoas * 100;
+
+        System.out.println("Quantidade de respostas 10: " + quantidadeRespostas10);
+        System.out.println("Média de idade das pessoas que responderam o questionário: " + mediaIdade);
+        System.out.println("Percentagem de pessoas que responderam 5 ou menos para a opinião da peça: " + percentagemOpiniao5OuMenos + "%");
+        System.out.println("Identificador da pessoa mais velha: " + identificadorMaisVelha);
+
+        scanner.close();
+    }
+}
+///////////////////////////////////////////////////////
+5. Faça um algoritmo que leia 10 salários. Depois de lidos e armazenados, mostre o maior valor. Utilize vetores
+
+import java.util.Scanner;
+
+public class MaiorSalario {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        double[] salarios = new double[10];
+        
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Digite o salário " + (i + 1) + ": ");
+            salarios[i] = scanner.nextDouble();
+        }
+        
+        double maiorSalario = salarios[0];
+        
+        for (int i = 1; i < 10; i++) {
+            if (salarios[i] > maiorSalario) {
+                maiorSalario = salarios[i];
+            }
+        }
+        
+        System.out.println("O maior salário é: " + maiorSalario);
+        
+        scanner.close();
+    }
+}
+/////////////////////////////////////////////////////////
+
+PROFESSOR NÃO ENTENDI A QUESTÃO 2, NÃO CONSEGUI SOLUCIONA-LA
+
