@@ -1,0 +1,293 @@
+ALUNO: ALISSON COSTA MOREIRA
+CURSO: LICENCIATURA EM COMPUTAÇÃO
+DISCIPLINA: LINGUAGEM DE PROGRAMAÇÃO I
+
+//////////////////////////////////////////////////
+
+1. Escreva um programa que lê todos os elementos de uma matriz 4 × 4 e mostra a matriz e a sua transposta na tela. 
+
+import java.util.Scanner;
+
+public class NovaMatriz {
+    public static void main(String[] args) {
+        int[][] matriz = new int[4][4];
+        Scanner scanner = new Scanner(System.in);
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.println("Digite um número:");
+                matriz[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("Matriz original:");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        System.out.println("Nova matriz:");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print(matriz[j][i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////
+
+2. Faca um algoritmo q leia e armazene 5 valores inteiros em um vetor Vet1. 
+Leia outros 5 valores inteiros e armazene num vetor Vet2.
+A partir destes valores lidos, mostre na tela:
+
+ - a soma dos elementos de cada vetor, nas respectivas posições 
+
+- a diferença dos elementos de cada vetor, nas respectivas posições 
+
+- o produto dos elementos de cada vetor, nas respectivas posições 
+
+- a divisão entre os elementos de cada vetor, nas respectivas posições 
+
+
+import java.util.Scanner;
+
+public class OperacoesVetores {
+    public static void main(String[] args) {
+        int[] Vet1 = new int[5];
+        int[] Vet2 = new int[5];
+        int[] soma = new int[5];
+        int[] diferenca = new int[5];
+        int[] produto = new int[5];
+        double[] divisao = new double[5];
+
+        Scanner scanner = new Scanner(System.in);
+
+        
+        System.out.println("Digite o Vetor 1:");
+        for (int i = 0; i < 5; i++) {
+            Vet1[i] = scanner.nextInt();
+        }
+
+    
+        System.out.println("Digite o Vetor 2:");
+        for (int i = 0; i < 5; i++) {
+            Vet2[i] = scanner.nextInt();
+        }
+
+        for (int i = 0; i < 5; i++) {
+            soma[i] = Vet1[i] + Vet2[i];
+            diferenca[i] = Vet1[i] - Vet2[i];
+            produto[i] = Vet1[i] * Vet2[i];
+            divisao[i] = (double) Vet1[i] / Vet2[i];
+        }
+
+       
+        System.out.println("Soma:");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(soma[i]);
+        }
+
+        System.out.println("Diferença:");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(diferenca[i]);
+        }
+        System.out.println("Divisão:");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(divisao[i]);
+
+        
+        }
+        System.out.println("Produto:");
+        for (int i = 0; i < 5; i++) {
+            System.out.println(produto[i]);        
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////
+
+3. Escreva um programa que lê 2 matrizes 5 × 5, mostre-as na tela e mostre a soma entre as duas matrizes em seguida. 
+
+
+import java.util.Scanner;
+
+public class SomaMatrizes {
+    public static void main(String[] args) {
+        int[][] matriz1 = new int[5][5];
+        int[][] matriz2 = new int[5][5];
+        int[][] matrizSoma = new int[5][5];
+
+        Scanner scanner = new Scanner(System.in);
+
+       
+        System.out.println("Digite o valor da matriz 1:");
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                matriz1[i][j] = scanner.nextInt();
+            }
+        }
+
+        
+        System.out.println("Digite os valores da matriz 2:");
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                matriz2[i][j] = scanner.nextInt();
+            }
+        }
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                matrizSoma[i][j] = matriz1[i][j] + matriz2[i][j];
+            }
+        }
+
+      
+        System.out.println("Matriz 1:");
+        exibirMatriz(matriz1);
+
+        System.out.println("Matriz 2:");
+        exibirMatriz(matriz2);
+
+        System.out.println("Soma das matrizes:");
+        exibirMatriz(matrizSoma);
+    }
+
+   
+    public static void exibirMatriz(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////
+
+4. Crie uma função em linguagem JAVA que receba 3 números e retorne o menor valor, use a função da questão 5. 
+
+import java.util.Scanner;
+
+public class MenorValor {
+    public static int AcharMenorValor(int num1, int num2, int num3) {
+        int menor = num1;
+
+        if (num2 < menor) {
+            menor = num2;
+        }
+
+        if (num3 < menor) {
+            menor = num3;
+        }
+
+        return menor;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite a nota de Ana: ");
+        int num1 = scanner.nextInt();
+
+        System.out.print("Digite a nota de João: ");
+        int num2 = scanner.nextInt();
+
+        System.out.print("Digite a nota de Maria: ");
+        int num3 = scanner.nextInt();
+
+        int menorValor = AcharMenorValor(num1, num2, num3);
+
+        System.out.println(" A menor nota Foi: " + menorValor);
+    }
+}
+
+(PROFESSOR NÃO SEI SE ERA PRA USAR OS ALUNOS DA QUESTÃO 5, OU OUTRA COISA, NÃO ENTENDI O QUE A QUESTÃO PEDIA,
+MAS FIZ O PROGRAMA QUE RECEBE 3 VALORES E INFORMA O MENOR DO 3 VALORES RECEBIDOS )
+
+//////////////////////////////////////////////////////////////////////
+
+5. Leia e armazene num vetor de 10 posições o nome dos alunos aprovados no vestibular para
+Ciência da Computação em 2007/1. A seguir, leia um nome de entrada e verifique se este aluno consta na listagem dos
+aprovados e mostre sua classificação (ordem de aprovação, representada pelo índice do vetor +1).
+Caso o nome informado não exista na lista dos aprovados, mostre uma mensagem ‘Nome informado não consta na lista dos aprovados’. 
+
+import java.util.Scanner;
+
+public class VerificarAprovados {
+    public static void main(String[] args) {
+        String[] aprovados = new String[10];
+
+        Scanner scanner = new Scanner(System.in);
+
+        
+        System.out.println("Nome dos alunos aprovados:");
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Aluno " + (i + 1) + ": ");
+            aprovados[i] = scanner.nextLine();
+        }
+
+        
+        System.out.print("Consultar Aluno: ");
+        String nome = scanner.nextLine();
+
+        boolean encontrado = false;
+        int classificacao = 0;
+
+        
+        for (int i = 0; i < 10; i++) {
+            if (aprovados[i].equalsIgnoreCase(nome)) {
+                encontrado = true;
+                classificacao = i + 1;
+                break;
+            }
+        }
+
+        
+        if (encontrado) {
+            System.out.println("O aluno " + nome + " foi aprovado na"  + classificacao +"º posição .");
+        } else {
+            System.out.println("Aluno não aprovado.");
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////////
+
+6. Faça um programa que leia uma string digitada pelo usuário (máximo 20 caracteres) 
+e imprima na tela o número de vogais existente nesta string
+
+import java.util.Scanner;
+
+public class ContarVogais {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Escreva uma palavra (20 caracteres máx.): ");
+        String palavra = scanner.nextLine();
+
+        int contadorVogais = 0;
+
+        for (int i = 0; i < palavra.length(); i++) {
+            char caractere = palavra.charAt(i);
+
+            if (Character.toString(caractere).equalsIgnoreCase("a") ||
+                Character.toString(caractere).equalsIgnoreCase("e") ||
+                Character.toString(caractere).equalsIgnoreCase("i") ||
+                Character.toString(caractere).equalsIgnoreCase("o") ||
+                Character.toString(caractere).equalsIgnoreCase("u")) {
+                contadorVogais++;
+            }
+        }
+
+        System.out.println("a palavra" +palavra "tem: " + contadorVogais "vogais.");
+    }
+}
+
+
+
