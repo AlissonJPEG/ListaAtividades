@@ -1,73 +1,194 @@
 ALUNO: ALISSON COSTA MOREIRA
 CURSO: LICENCIATURA EM COMPUTAÇÃO
-DISCIPLINA: MATEMATICA DISCRETA
-ATIVIDADE1.2
+DISCIPLINA: ESTRUTURA DE DADOS
+ATIVIDADE.2
 
 ////////////////////////////////////////////////////////////////
 
-QUESTÃO 01 - SOMENTE A RESPOSTA 
+QUESTÃO 01
 
-ITEM B)
+Nesse primeiro algoritmo veremos: 
 
-explicação:
-NÚMERO DE ALUNOS QUE TORCEM PELO FORTALEZA (A) = 23 
-NÚMERO DE ALUNOS QUE TORCEM PELO CEARÁ (B) = 23 
-NÚMERO DE ALUNOS QUE TORCEM PELO BOTAFOGO (C) = 15 
-NÚMERO DE ALUNOS QUE TORCEM PELO FORTALEZA E PELO BOTAFOGO (A ∩ C) = 6 
-NÚMERO DE ALUNOS QUE TORCEM PELO BOTAFOGO E PELO CEARÁ (B ∩ C) = 5
+1 -A pilha original será preenchida com 10 números aleatórios
+2 -  Vamos imprimir a pilha original
+3 -  Iremos Inverter a pilha
+4 -  Por Ultimo iremos imprimir a pilha invertida
 
-USEI O PRINCÍPIO DA INCLUSÃO E EXCLUSÃO PARA CALCULAR O NÚMERO TOTAL DE ALUNOS (N):
-N = |A ∪ B ∪ C| = |A| + |B| + |C| - |A ∩ C| - |B ∩ C| = 23 + 23 + 15 - 6 - 5 = 50
+import java.util.Stack;
+import java.util.Random;
 
-NÚMERO DE ALUNOS = 50
+public class ReverseStack {
+    public static void main(String[] args) {
+        Stack<Integer> originalStack = new Stack<>();
+        Stack<Integer> tempStack = new Stack<>();
+        Random rand = new Random();
+
+        
+        for (int i = 0; i < 10; i++) {
+            originalStack.push(rand.nextInt(100) + 1);  // Números de 1 a 100
+        }
+
+       
+        System.out.println("Original Stack: " + originalStack);
+
+        
+        while (!originalStack.isEmpty()) {
+            tempStack.push(originalStack.pop());
+        }
+        originalStack = tempStack;
+
+       
+        System.out.println("Reversed Stack: " + originalStack);
+    }
+}
 
 //////////////////////////////////////////////////////////////
 
-QUESTÃO 02 - SOMENTE A RESPOSTA 
+QUESTÃO 02
 
-ITEM C) 
+Nesse algoritmo teremos 3 etapas importantes que serão : 
 
-explicação:
-CONJUNTO A = {1, 2, 3}
-CONJUNTO B = {2, 3, 5}
+1 - será Criado a fila com as n pessoas
+2 - Vamos Simular o processo de eliminação
+3 - Será retornado o elemento restante na fila
 
-PARA OBTER A - B, REMOVEMOS OS ELEMENTOS DE B DE A:
-A - B = {1}
+import java.util.LinkedList;
+import java.util.Queue;
 
-O CONJUNTO A - B É {1}.
+public class Josephus {
+    public static int josephusProcess(int n, int m) {
+        Queue<Integer> queue = new LinkedList<>();
+
+        
+        for (int i = 1; i <= n; i++) {
+            queue.offer(i);
+        }
+
+       
+        while (queue.size() > 1) {
+            for (int i = 1; i < m; i++) {
+                queue.offer(queue.poll());
+            }
+            queue.poll(); 
+        }
+
+        
+        return queue.poll();
+    }
+
+    public static void main(String[] args) {
+        int n = 10; // Número de pessoas
+        int m = 3; // Número de contagem
+        int leader = josephusProcess(n, m);
+        System.out.println("O líder é a pessoa " + leader);
+    }
+}
 
 //////////////////////////////////////////////////////////////
 
-QUESTÃO 03 - SOMENTE A RESPOSTA 
+QUESTÃO 03 
 
-ITEM D) 
+1 - Primeiro Será criado uma Pilha e uma Fila
+2 - Depois vamos inserir elementos na Pilha e na Fila criada
+3 - Os elementos serão mostrados na Pilha de forma organizada
+4 - Os Elementos também serão exibidos de Forma organizada na fila.
+5 - vamos remover 3 elementos de cada estrutura
+6 - Sera exibido os elemntos restantes  na Pilha e na Fila 
 
---TODA FUNÇÃO É UMA RELAÇÃO--
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] dados = {50, 34, 88, 37, 87, 52, 81, 10, 43, 77, 18, 47};
+
+        Stack<Integer> pilha = new Stack<>();
+        Queue<Integer> fila = new LinkedList<>();
+
+        for (int dado : dados) {
+            pilha.push(dado);
+            fila.offer(dado);
+        }
+
+        System.out.println("Elementos na Pilha:");
+        while (!pilha.isEmpty()) {
+            System.out.print(pilha.pop() + " ");
+        }
+        System.out.println();
+
+        System.out.println("Elementos na Fila:");
+        while (!fila.isEmpty()) {
+            System.out.print(fila.poll() + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < 3; i++) {
+            pilha.pop();
+            fila.poll();
+        }
+
+        System.out.println("Elementos restantes na Pilha após remoção:");
+        for (int i = pilha.size() - 1; i >= 0; i--) {
+            System.out.print(pilha.get(i) + " ");
+        }
+        System.out.println();
+
+        System.out.println("Elementos restantes na Fila após remoção:");
+        for (int elemento : fila) {
+            System.out.print(elemento + " ");
+        }
+        System.out.println();
+    }
+}
 
 /////////////////////////////////////////////////////////////
 
-QUESTÃO 04 - SOMENTE A RESPOSTA 
+QUESTÃO 04 
 
-ITEM F) ESTÁ INCORRETO
+1 - Iremos transferir os elementos da fila para a pilha
+2 - Os elementos serão tragos de volta para a fila (Pórem com a ordem invertida)
+3 - Por ultimo será exibido os elementos da fila já com a ordem invertida
 
-O CONJUNTO DADO NA QUESTÃO É:
 
-A = {1, 3, 4, 6, 8}
-B = {1, 2, 3, 7, 8}
 
-O  2 NÃO ESTÁ PRESENTE NO A ELE SE ENCONTRA APENAS EM B, PORTANTO, {2} NÃO ESTÁ CONTIDO NA UNIÃO  A E B. 
 
-(SE EU TIVER ENTENDIDO ERRADO ME EXPLICA ESSA QUESTÃO PROFESSOR)
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Queue<Integer> fila = new LinkedList<>();
+        fila.offer(1);
+        fila.offer(2);
+        fila.offer(3);
+        fila.offer(4);
+        fila.offer(5);
+
+        Stack<Integer> pilha = new Stack<>();
+
+        while (!fila.isEmpty()) {
+            pilha.push(fila.poll());
+        }
+
+        while (!pilha.isEmpty()) {
+            fila.offer(pilha.pop());
+        }
+
+        System.out.println("Elementos da fila com a ordem invertida:");
+        while (!fila.isEmpty()) {
+            System.out.print(fila.poll() + " ");
+        }
+    }
+}
 
 ///////////////////////////////////////////////////////////////
 
-QUESTÃO 05 - SOMENTE A  RESPOSTA
+QUESTÃO 05 
 
-ITEM B) ESTÁ INCORRETO
+! Não entendi bem essa questão e não tive tempo de solciona=la !
 
-O CONJUNTO DADO NESSA QUESTÃO É:
 
-A = {4,6,8,9,10}
-B = {1,2,3,7,8}
 
-O ELEMENTO 2 NÃO  PRESENTE APENAS EM B, NÃO TEM COMO ELE ESTAR EM UMA UNIÃO DE A E B.
